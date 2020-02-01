@@ -52,11 +52,22 @@ def get_files(path):
         #dir_check(user, proj)
         d = dict()
         #path = "data/{}/{}/".format(user, proj)
-        d = rec_files("data/" + path + "/", d, 0)
+        d['dir'] = rec_files("data/" + path + "/", d, 0)
         return d
 
 
 def rec_files(path, d, c):
+	contents = os.listdir(path)
+	name = path.split('/')[-2]
+	l = list()
+
+	for con in contents:
+		if os.path.isfile(path + con):
+			l.append({"file": [con, path+con]})
+		elif os.path.isdir(path+con):
+			l.append({"dir": rec_files(path+con+"/", d, c)})
+	return [name, path, l]
+	"""
         contents = os.listdir(path)
         for con in contents:
                 if os.path.isfile(path + con):
@@ -70,7 +81,7 @@ def rec_files(path, d, c):
                         newd = rec_files(rel_path, d, c+1)
                         d = merge(d, newd)
         return d
-
+	"""
 
 @app.route('/')
 @app.route('/index')
