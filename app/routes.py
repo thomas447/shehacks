@@ -6,6 +6,7 @@ import subprocess
 
 online = dict()
 
+open_files = dict()
 
 def dir_check(user, proj):
         if not os.path.isdir("data/{}/{}".format(user, proj)):
@@ -134,20 +135,25 @@ def collab():
 			l.append(user)
 	return jsonify({"users": l})
 
-@app.route('/get_contents', methods=['POST'])
+@app.route('/get_contents', methods=['POST', 'GET'])
 def get_contents():
     if request.method == 'POST':
         path = request.form['path']
-        with open(path, 'r') as f:
-            content = f.read()
+        if path in open_files:
+            content = open_files[path]
+        else:
+            with open(path, 'r') as f:
+                content = f.read()
+                open_files[path] = content
         return jsonify({"content": content})
-        
+
 @app.route('/update_file', methods=['POST'])
 def update_file():
 	if request.method == 'POST':
 		path = request.form['path']
-		curr_name = request.form['curr_name']
+		#curr_name = request.form['curr_name']
 		mode = request.form['mode']
 		content = request.form['content']
-		if mode == 'CREATE':
-			create_file(curr_name, path)
+		if mode == 'UPDATE':
+			if path in open_files:
+				open_files[path] = contents
