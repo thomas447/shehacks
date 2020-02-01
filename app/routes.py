@@ -156,4 +156,9 @@ def update_file():
 		content = request.form['content']
 		if mode == 'UPDATE':
 			if path in open_files:
-				open_files[path] = contents
+				open_files[path] = content
+		if mode == 'SAVE':
+			if path in open_files:
+				open_files[path] = content
+			with open(path, 'w') as f:
+				f.write(content)
