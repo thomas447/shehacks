@@ -1,10 +1,8 @@
 from app import app
-from flask import Flask, session, redirect, Response, url_for, request, render_template,  jsonify
+from flask import Flask, session, redirect, url_for, request, render_template,  jsonify
 import os
 import subprocess
-import time
-import json
-stat = True;
+
 
 online = dict()
 
@@ -168,7 +166,7 @@ def update_file():
 			if path in open_files:
 				open_files[path] = content
 			if path == "":
-				return jsonify({})
+				return
 			with open(path, 'w') as f:
 				f.write(content)
 	return jsonify({})
@@ -183,9 +181,7 @@ def run():
 
 @app.route('/create', methods=['POST'])
 def create():
-	global stat
 	if request.method == 'POST':
-		stat = True
 		path = request.form['path']
 		type = request.form['type']
 		if type == 'DIR':
@@ -200,12 +196,3 @@ def ses():
 	if request.method == 'POST':
 		type = request.form['type']
 		return jsonify({"ses": session[type]})
-
-@app.route('/refresh/')
-def refresh():	
-	def event_stream():
-		while True:
-			yield "id: refresh\nevent: refresh\ndata: refresh"
-			time.sleep(1);
-
-	return Response(event_stream(), mimetype="text/event-stream")
