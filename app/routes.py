@@ -9,44 +9,41 @@ online = dict()
 open_files = dict()
 
 def dir_check(user, proj):
-        if not os.path.isdir("data/{}/{}".format(user, proj)):
-                os.system("mkdir data/{}/{}".format(user, proj))
+	if not os.path.isdir("data/{}/{}".format(user, proj)):
+		os.system("mkdir data/{}/{}".format(user, proj))
 
 
 def create_file(curr_name, path, content):
-        #dir_check(user, project)
-        path = "data/{}/{}".format(curr_name, filename)
-        if (os.path.isfile(path)):
-                return None
-        with open(path, "w") as f:
-                f.write(content)
+	path = "data/{}/{}".format(curr_name, filename)
+	if (os.path.isfile(path)):
+		return None
+	with open(path, "w") as f:
+		f.write(content)
 
 def create_dir(user, proj, dirname):
-        os.system("mkdir data/{}/{}/{}".format(user, proj, dirname))
+	os.system("mkdir data/{}/{}/{}".format(user, proj, dirname))
 
 def save_file(user, filename, project, content):
-        dir_check(user, project)
-        path = "data/{}/{}/{}".format(user, project, filename)
-        with open(path, "w") as f:
-                f.write(content)
+	dir_check(user, project)
+	path = "data/{}/{}/{}".format(user, project, filename)
+	with open(path, "w") as f:
+		f.write(content)
 
 def delete_file(user, project, filename):
-        path = "data/{}/{}/{}".format(user, project, filename)
-        if (os.path.isfile(path)):
-                os.system("rm {}".format(path))
+	path = "data/{}/{}/{}".format(user, project, filename)
+	if (os.path.isfile(path)):
+		os.system("rm {}".format(path))
 
 def run_file(path):
-        #dir_check(user, project)
-        #path = "data/{}/{}/{}".format(user, project, filename)
-        if (filename.split(".")[-1] == "py"):
-                proc = subprocess.Popen(["python3 {}".format(path)], stdout=subprocess.PIPE, shell=True)
-                (out, err) = proc.communicate()
-		ret = ""
+	if (filename.split(".")[-1] == "py"):
+		proc = subprocess.Popen(["python3 {}".format(path)], stdout=subprocess.PIPE, shell=True)
+		(out, err) = proc.communicate()
+		ret = " "
 		if out != None:
 			ret += decode(out)
 		if err != None:
 			ret += decode(err)
-                return ret
+		return ret
 
 def merge(d1, d2):
         for key  in d2.keys():
