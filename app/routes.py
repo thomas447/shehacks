@@ -12,9 +12,9 @@ def dir_check(user, proj):
                 os.system("mkdir data/{}/{}".format(user, proj))
 
 
-def create_file(user, project, filename, content):
-        dir_check(user, project)
-        path = "data/{}/{}/{}".format(user, project, filename)
+def create_file(curr_name, path, content):
+        #dir_check(user, project)
+        path = "data/{}/{}".format(curr_name, filename)
         if (os.path.isfile(path)):
                 return None
         with open(path, "w") as f:
@@ -133,3 +133,13 @@ def collab():
 		if online[user] == session["curr_project"]:
 			l.append(user)
 	return jsonify({"users": l})
+
+@app.route('/update_file', methods=['POST'])
+def update_file():
+	if request.method == 'POST':
+		path = request.form['path']
+		curr_name = request.form['curr_name']
+		mode = request.form['mode']
+		content = request.form['content']
+		if mode == 'CREATE':
+			create_file(curr_name, path)
