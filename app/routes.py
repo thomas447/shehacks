@@ -20,6 +20,9 @@ def login():
 	if (request.method == 'POST'):
 		session["username"] = request.form["username"]
 		session["logged_in"] = True
+		session["working_name"] = 'admin/Project';
+		session["curr_project"] = 'Project';
+		session["curr_file"] = ''
 		return redirect(url_for("index"))
 
 	return render_template('login.html');
@@ -28,4 +31,8 @@ def login():
 @app.route('/logout')
 def logout():
 	session['logged_in'] = False
+	session["username"] = ''
+	session["working_name"] = '';
+	session["curr_project"] = '';
+	session["working_name"] = '';
 	return "Logged Out"

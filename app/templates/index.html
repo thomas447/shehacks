@@ -30,16 +30,16 @@
 	        <a class="nav-link" href="projects.html">Projects</a>
 	      </li>
 	    </ul>
+	    <button class="btn btn-outline-success my-2 my-sm0" type = "submit" style = "margin-right: 5px;">{{ session["username"] }}</button>
 	    <form class="form-inline my-2 my-lg-0" action="/logout">
-			<button class="btn btn-outline-success my-2 my-sm0" type = "submit"></button>
+	    	<button class="btn btn-outline-danger my-2 my-sm-0">Logout</button>
 	    </form>
-	   	<button class="btn btn-outline-success my-2 my-sm-0">User Name</button>
 	  </div>
 	</nav>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12 text-center bg-secondary text-light">
-				<h1 style="margin-top : 20px; margin-bottom : 20px;">Project Title</h1>
+				<h1 style="margin-top : 20px; margin-bottom : 20px;">{{ session["working_name"] }}</h1>
 			</div>
 		</div>
 		<div class="row">
@@ -49,6 +49,7 @@
 			</div>
 			<div class="col-6 text-center" style = "padding-top: 20px; padding-bottom: 20px;">
 				<button class="btn btn-success">Run</button>
+				<button class="btn btn-danger">Terminate</button>
 				<button class="btn btn-primary">Settings</button>
 			</div>
 			
@@ -59,11 +60,16 @@
 		</div>
 		<div class="row">
 			<div class="col-3 bg-light">
-				<h5>File Explorer</h5>
+				<h5 style = "margin-top: 15px;">File Explorer</h5>
+				<hr>
 			</div>
-			<div class="col-6 bg-dark text-light" style="padding: 0px;">
-				<span style="margin: 5px;">Editing file.py</span>
-				<textarea id="editor">Your mom's a ho</textarea>
+			<div class="col-7 bg-dark text-light" style="padding: 0px;">
+				{% if session["curr_file"] == '' %}
+				<span style="margin: 5px;">Choose a file to start editing</span>
+				{% else %}
+				<span style="margin: 5px;">Editing <b>{{ session["curr_file"] }}</b></span>
+				{% endif %}
+				<textarea id="editor"># Welcome to Climb IDE. Choose a file to get started #</textarea>
 				<script>
 					var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
 						mode: "python",
@@ -74,16 +80,19 @@
 				  	editor.setSize(null,480);
 				</script>
 			</div>
-			<div class="col-3 bg-light">
-				<h5>Collaborators</h5>
+			<div class="col-2 bg-light">
+				<h5 style = "margin-top: 15px;">Collaborators</h5>
+				<hr/>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-9 bg-dark text-light" style = "height: 250px">
-				<h5>Console</h5>
+			<div class="col-10 bg-dark text-light" style = "height: 250px">
+				<h5 style = "margin-top: 15px;">Console</h5>
+				<hr/>
 			</div>
-			<div class="col-3 bg-secondary text-light" style = "height: 250px">
-				<h5>Chat</h5>
+			<div class="col-2 bg-secondary text-light" style = "height: 250px">
+				<h5 style = "margin-top: 15px;">Chat</h5>
+				<hr/>
 			</div>
 		</div>
 	</div>
