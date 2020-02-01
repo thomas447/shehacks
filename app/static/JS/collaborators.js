@@ -5,8 +5,12 @@ $(document).ready(function () {
 	getCollaborators();
 
 	window.setInterval(function(){
+	
 		getCollaborators();
+	
 	}, 1000);
+
+
 
 });
 

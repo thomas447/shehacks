@@ -4,6 +4,7 @@ var changeCounter = 0;
 
 // Auto Save
 
+
 $(document).ready(function() {
 
 	editor.on("change", function () {
