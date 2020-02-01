@@ -1,14 +1,12 @@
 var size = 0;
 
-$(document).ready(function () {
-		
+$(document).ready(function() {
 	getCollaborators();
-
-	window.setInterval(function(){
+	window.setInterval(function() {
 		getCollaborators();
 	}, 1000);
+})
 
-});
 
 function getCollaborators() {
 	$.ajax({

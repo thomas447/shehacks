@@ -2,10 +2,9 @@ var currentFilePath = '';
 var currentFile = null;
 var changeCounter = 0;
 
-// Auto Save
+$(document).ready(function () {
 
-$(document).ready(function() {
-
+	// Auto Save
 	editor.on("change", function () {
 		changeCounter += 1;
 		if (changeCounter < 50) {
@@ -28,7 +27,6 @@ $(document).ready(function() {
 		$("#save").html('Saved');
 		changeCounter = 0;
 	}, 10000);
-
 
 })
 

@@ -1,10 +1,8 @@
-$(document).ready(function() {
+var source = new EventSource("/refresh");
 
-	var source = new EventSource("/refresh");
+source.onmessage =  function(event) {
+	console.log(event.data);
+	getFileExplorerContent();
+}
 
-	source.onmessage = function(event) {
-		alert(event.data);
-		getFileExplorerContent();
-	}
 
-});

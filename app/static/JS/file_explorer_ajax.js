@@ -1,8 +1,6 @@
-$(document).ready(function () {
-
+$(document).ready(function() {
 	getFileExplorerContent();
-
-});
+})
 
 // File Creation Handling
 function onNewDirectory() {
