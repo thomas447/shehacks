@@ -13,7 +13,8 @@ def index():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-	if session["logged_in"]:
+
+	if session.get("logged_in") and session["logged_in"]:
 		return redirect(url_for("index"))
 
 	if (request.method == 'POST'):
