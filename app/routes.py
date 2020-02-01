@@ -195,4 +195,4 @@ def create():
 def session():
 	if request.method == 'POST':
 		type = request.form['type']
-		return jsonify({type: session[type]})
+		return jsonify({"session": session[type]})
