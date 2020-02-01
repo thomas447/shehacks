@@ -1,6 +1,8 @@
 var currentFilePath = '';
 var everythingSaved = true;
 
+// Callbacks
+
 function onClickFile(file) {
 
 	if(file.getAttribute('path') != currentFilePath) {
@@ -22,6 +24,14 @@ function onSave() {
 
 	saveFileAjax(data);
 }
+
+function onRefresh() {
+	if (currentFilePath != '') {
+		openFileAjax(currentFilePath);
+	}
+}
+
+// Ajax Calls
 
 function runFileAjax(filePath) {
 
