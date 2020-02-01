@@ -1,4 +1,5 @@
 var currentFilePath = '';
+var everythingSaved = true;
 
 function onClickFile(file) {
 
@@ -11,8 +12,27 @@ function onClickFile(file) {
 
 function onSave() {
 
+	var textContent = editor.getDoc().getValue();
 
+	var data = {
+		path: currentFilePath,
+		mode: 'SAVE',
+		content: textContent
+	}
 
+	saveFileAjax(data);
+}
+
+function runFileAjax(filePath) {
+
+}
+
+function saveFileAjax(data) {
+	$.ajax({
+		type: 'POST',
+		url: '/update_file',
+		data: data
+	})
 }
 
 function openFileAjax(filePath) {
@@ -27,10 +47,9 @@ function openFileAjax(filePath) {
 
 	$.ajax({
 		type: 'POST',
-		url: 'get_contents',
+		url: '/get_contents',
 		data: data,
 		success: function(result) {
-			console.log(result.content);
 			editor.getDoc().setValue(result.content);
 		} 
 	})
