@@ -35,15 +35,15 @@ def delete_file(user, project, filename):
 		os.system("rm {}".format(path))
 
 def run_file(path):
-	if (filename.split(".")[-1] == "py"):
-		proc = subprocess.Popen(["python3 {}".format(path)], stdout=subprocess.PIPE, shell=True)
-		(out, err) = proc.communicate()
-		ret = " "
-		if out != None:
-			ret += decode(out)
-		if err != None:
-			ret += decode(err)
-		return ret
+	proc = subprocess.Popen(["python3 {}".format(path)], stdout=subprocess.PIPE, shell=True)
+	(out, err) = proc.communicate()
+	ret = ""
+	print(out)
+	if out != None:
+		ret += out.decode()
+	if err != None:
+		ret += err.decode()
+	return ret.replace('\n', '<br>')
 
 def merge(d1, d2):
         for key  in d2.keys():
