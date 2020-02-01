@@ -52,7 +52,7 @@ def get_files(path):
         #dir_check(user, proj)
         d = dict()
         #path = "data/{}/{}/".format(user, proj)
-        d = rec_files("data/" + path, d, 0)
+        d = rec_files("data/" + path + "/", d, 0)
         return d
 
 
