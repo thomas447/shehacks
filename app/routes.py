@@ -1,8 +1,7 @@
 from app import app
 
 #from flask import session
-from flask import Flask, session, redirect, url_for, request, render_template
-
+from flask import Flask, session, redirect, url_for, request, render_template,  jsonify
 
 
 import os
@@ -49,11 +48,11 @@ def merge(d1, d2):
                         d1[key] = d2[key]
         return d1
 
-def get_files(user, proj):
-        dir_check(user, proj)
+def get_files(path):
+        #dir_check(user, proj)
         d = dict()
-        path = "data/{}/{}/".format(user, proj)
-        d = rec_files(path, d, 0)
+        #path = "data/{}/{}/".format(user, proj)
+        d = rec_files("data/" + path, d, 0)
         return d
 
 
@@ -108,7 +107,7 @@ def logout():
 	return redirect(url_for("login"));
 
 
-@app.route('/files', method=['POST'])
+@app.route('/files', methods=['POST', 'GET'])
 def files():
-	d = get_files(session['working_name'], session['curr_project'])
+	d = get_files(session['working_name'])
 	return jsonify(d)
