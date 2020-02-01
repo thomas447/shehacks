@@ -2,10 +2,10 @@
 <html>
 <head>
 	<title>Climb IDE</title>
-	<link rel="stylesheet" href="codemirror-5.51.0/lib/codemirror.css">
-	<script src="codemirror-5.51.0/lib/codemirror.js"></script>
-	<script src="codemirror-5.51.0/mode/python/python.js"></script>
-	<link rel="stylesheet" href="codemirror-5.51.0/theme/dracula.css">
+	<link  rel="stylesheet type="text/css" href="{{ url_for('static',filename='codemirror-5.51.0/lib/codemirror.css') }}">
+	<link  rel="stylesheet type="text/css" href="{{ url_for('static',filename='codemirror-5.51.0/theme/dracula.css') }}">
+	<script src="{{ url_for('static',filename='codemirror-5.51.0/lib/codemirror.js') }}"></script>	
+	<script src="{{ url_for('static',filename='codemirror-5.51.0/mode/python/python.js') }}"></script>
 	
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 	

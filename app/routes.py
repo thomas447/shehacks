@@ -8,13 +8,21 @@ from flask import Flask, session, redirect, url_for, request, render_template
 def index():
 	if not session.get('logged_in'):
 		return redirect(url_for('login'))
-	return "Hello, World!"
+	return render_template("index.html")
 
 
-@app.route('/login')
+@app.route('/login', methods=['POST', 'GET'])
 def login():
-	session['logged_in'] = True
-	return render_template("login.html")
+	if session["logged_in"]:
+		return redirect(url_for("index"))
+
+	if (request.method == 'POST'):
+		session["username"] = request.form["username"]
+		session["logged_in"] = True
+		return "Hello, {}".format(session["username"])
+	else:
+		#session['logged_in'] = True
+		return render_template("login.html")
 
 
 @app.route('/logout')

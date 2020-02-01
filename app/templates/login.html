@@ -10,13 +10,13 @@
     <div class="col-sm">
 
       <h1> Login </h1>
-      <form>
+      <form action="/login" method="POST">
         <div class="col-lg-offset-4">
         <div class = "form-group">
           <label for = "Username">Username</label>
-          <input type="username" class = "form-control" id="InputUsername">
+          <input type="username" name="username"  class = "form-control" id="InputUsername">
         </div>
-        <button type = "submit" class="btn btn-primary">Submit</button>
+        <button type = "submit" value="submit" class="btn btn-primary">Submit</button>
         </div>
       </form>
     </div>
