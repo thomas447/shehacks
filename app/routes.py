@@ -35,13 +35,18 @@ def delete_file(user, project, filename):
         if (os.path.isfile(path)):
                 os.system("rm {}".format(path))
 
-def run_file(user, project, filename):
-        dir_check(user, project)
-        path = "data/{}/{}/{}".format(user, project, filename)
+def run_file(path):
+        #dir_check(user, project)
+        #path = "data/{}/{}/{}".format(user, project, filename)
         if (filename.split(".")[-1] == "py"):
                 proc = subprocess.Popen(["python3 {}".format(path)], stdout=subprocess.PIPE, shell=True)
                 (out, err) = proc.communicate()
-                return (out, err)
+		ret = ""
+		if out != None:
+			ret += decode(out)
+		if err != None:
+			ret += decode(err)
+                return ret
 
 def merge(d1, d2):
         for key  in d2.keys():
@@ -162,3 +167,10 @@ def update_file():
 				open_files[path] = content
 			with open(path, 'w') as f:
 				f.write(content)
+
+@app.route('/run', methods=['POST'])
+def run():
+	if request.method == 'POST':
+		path = request.form['path']
+		output = run_file(path)
+		return jsonify({"output": output})
