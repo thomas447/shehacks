@@ -35,4 +35,4 @@ def logout():
 	session["working_name"] = '';
 	session["curr_project"] = '';
 	session["working_name"] = '';
-	return "Logged Out"
+	return redirect(url_for("login"));
