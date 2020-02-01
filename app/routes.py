@@ -191,8 +191,8 @@ def create():
 		return jsonify({})
 
 
-@app.route('/session', methods=['POST'])
-def session():
+@app.route('/ses', methods=['POST'])
+def ses():
 	if request.method == 'POST':
 		type = request.form['type']
-		return jsonify({"session": session[type]})
+		return jsonify({"ses": session[type]})
