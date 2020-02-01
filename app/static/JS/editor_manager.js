@@ -1,9 +1,42 @@
 var currentFilePath = '';
 var currentFile = null;
+var changeCounter = 0;
+
+// Auto Save
+
+$(document).ready(function() {
+
+	editor.on("change", function () {
+		changeCounter += 1;
+		if (changeCounter < 50) {
+			$("#save").html('Saves have not been changed...');
+		}
+
+	})
+
+	window.setInterval(function(){
+		if (changeCounter > 25) {
+			onSave();
+			$("#save").html('Saved');
+			changeCounter = 0;
+		}
+	}, 1000);
+
+
+	window.setInterval(function(){
+		onSave();
+		$("#save").html('Saved');
+		changeCounter = 0;
+	}, 10000);
+
+
+})
 
 // Button Callbacks
 
 function onClickFile(file) {
+
+	onSave();
 
 	if(file.getAttribute('path') != currentFilePath) {
 		currentFilePath = file.getAttribute('path');
