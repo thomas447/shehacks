@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 def dir_check(user):
 	if not os.path.isdir("data/{}".format(user)):
@@ -22,6 +23,12 @@ def delete_file(user, filename):
 	if (os.path.isfile(path)):
 		os.system("rm {}".format(path))
 
+def run_file(user, filename):
+	path = "data/{}/{}".format(user, filename)
+	if (filename.split(".")[-1] == "py"):
+		proc = subprocess.Popen(["python3 {}".format(path)], stdout=subprocess.PIPE, shell=True)
+		(out, err) = proc.communicate()
+		return (out, err)
 
 if __name__ == "__main__":
-	delete_file("thomas", "test.txt")
+	run_file("thomas", "test.py")

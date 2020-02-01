@@ -14,7 +14,7 @@ def index():
 @app.route('/login')
 def login():
 	session['logged_in'] = True
-	return "Login"
+	return render_template("login.html")
 
 
 @app.route('/logout')
