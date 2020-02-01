@@ -12,7 +12,7 @@ function onNewDirectory() {
 	if (promptPath.trim() != '') {
 		var data = {
 			type: "DIR",
-			path: working_name + "/" + promptPath
+			path: "data/" + working_name + "/" + promptPath
 		}
 
 		ajaxCreate(data);
@@ -28,7 +28,7 @@ function onNewFile() {
 	if (promptPath.trim() != '') {
 		var data = {
 			type: "FILE",
-			path: working_name + "/" + promptPath
+			path: "data/" + working_name + "/" + promptPath
 		}
 
 		ajaxCreate(data);
