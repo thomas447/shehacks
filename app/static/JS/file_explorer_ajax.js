@@ -7,14 +7,15 @@ $(document).ready(function () {
 // Mouse Callbacks
 
 function fileMouseEnter(file) {
+	console.log("ENTER");
 	file.classList.remove(gray);
-	file.classList.add('bg-dark');
+	file.classList.add('outline-success');
 	file.classList.add('text-light');
 }
 
 function fileMouseLeave(file) {
 	file.classList.add(gray);
-	file.classList.remove('bg-dark');
+	file.classList.remove('outline-success');
 	file.classList.remove('text-light');
 }
 
