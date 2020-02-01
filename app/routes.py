@@ -189,3 +189,10 @@ def create():
 		elif type == "FILE":
 			os.system("touch {}".format(path))
 		return jsonify({})
+
+
+@app.route('/session', methods=['POST'])
+def session():
+	if request.method == 'POST':
+		type = request.form['type']
+		return jsonify({type: session[type]})
