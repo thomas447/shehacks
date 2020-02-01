@@ -28,6 +28,7 @@ function onRefresh() {
 	if (currentFilePath != '') {
 		openFileAjax(currentFilePath);
 	}
+	getFileExplorerContent();
 }
 
 function onRun() {
