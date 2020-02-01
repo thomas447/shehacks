@@ -1,6 +1,6 @@
 var currentFilePath = '';
 
-// Callbacks
+// Button Callbacks
 
 function onClickFile(file) {
 
