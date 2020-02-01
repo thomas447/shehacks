@@ -38,11 +38,14 @@ def run_file(path):
 	proc = subprocess.Popen(["python3 {}".format(path)], stdout=subprocess.PIPE, shell=True)
 	(out, err) = proc.communicate()
 	ret = ""
-	print(out)
+	#print(out)
 	if out != None:
 		ret += out.decode()
 	if err != None:
-		ret += err.decode()
+		print("Error")
+		print(err)
+		print("End Error")
+		ret += err
 	return ret.replace('\n', '<br>')
 
 def merge(d1, d2):
@@ -166,11 +169,23 @@ def update_file():
 				return
 			with open(path, 'w') as f:
 				f.write(content)
+	return jsonify({})
 
 @app.route('/run', methods=['POST'])
 def run():
 	if request.method == 'POST':
 		path = request.form['path']
-		print(path)
+		#print(path)
 		output = run_file(path)
 		return jsonify({"output": output})
+
+@app.route('/create', methods=['POST'])
+def create():
+	if request.method == 'POST':
+		path = request.form['path']
+		type = request.form['type']
+		if type == 'DIR':
+			os.system("mkdir -p {}".format(path))
+		elif type == "FILE":
+			os.system("touch {}".format(path))
+		return jsonify({})
