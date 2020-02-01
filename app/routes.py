@@ -134,6 +134,14 @@ def collab():
 			l.append(user)
 	return jsonify({"users": l})
 
+@app.route('/get_contents', methods=['POST'])
+def get_contents():
+    if request.method == 'POST':
+        path = request.form['path']
+        with open(path, 'r') as f:
+            content = f.read()
+        return jsonify({"content": content})
+        
 @app.route('/update_file', methods=['POST'])
 def update_file():
 	if request.method == 'POST':
