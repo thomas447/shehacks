@@ -162,6 +162,8 @@ def update_file():
 		if mode == 'SAVE':
 			if path in open_files:
 				open_files[path] = content
+			if path == "":
+				return
 			with open(path, 'w') as f:
 				f.write(content)
 
