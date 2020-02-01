@@ -27,7 +27,7 @@ function directoryHTML(dir, depth) {
 	var html = '<div class="directory bg-light" depth = "'+ depth + '"';
 	html += 'style = "padding-left: '+ (depth * 20) +'px; ">';
 
-	html += '<div class="dir-header text-light bg-secondary"><span class="dir-span" path="'+ dir[1] +'">'+ dir[0] +'</span></div>' 
+	html += '<div id="dir" class="dir-header text-light bg-secondary"><span class="dir-span" path="'+ dir[1] +'">'+ dir[0] +'</span></div>' 
 
 	for (var i = 0; i < dir_arr.length; i++) {
 		if (dir_arr[i].file != undefined) {	// File
@@ -49,6 +49,6 @@ function directoryHTML(dir, depth) {
 // File HTML computer
 function fileHTML(file_arr, depth) {
 
-	return '<div class="file gray text-dark" style = "margin-left: 20px" depth = "'+ depth +'"><span path = "'+ file_arr[1]+'">'+ file_arr[0] +'</span></div>'
+	return '<div id="file" onclick="onClickFile(this)" file = "' + file_arr[0] + '" path = "'+ file_arr[1]+'" class="file gray text-dark" style = "margin-left: 20px" depth = "'+ depth +'"><span>'+ file_arr[0] +'</span></div>'
 
 }

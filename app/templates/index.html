@@ -53,7 +53,8 @@
 			</div>
 			<div class="col-6 text-center" style = "padding-top: 20px; padding-bottom: 20px;">
 				<button class="btn btn-success">Run</button>
-				<button class="btn btn-danger">Terminate</button>
+				<button class="btn btn-danger" style="margin-right: 50px">Terminate</button>
+				<button class="btn btn-secondary" onclick="onSave()">Save</button>
 				<button class="btn btn-primary">Settings</button>
 			</div>
 			
@@ -71,11 +72,7 @@
 				</div>
 			</div>
 			<div class="col-7 bg-dark text-light" style="padding: 0px;">
-				{% if session["curr_file"] == '' %}
-				<span style="margin: 5px;"><-- Choose a file to start editing</span>
-				{% else %}
-				<span style="margin: 5px;">Editing <b>{{ session["curr_file"] }}</b></span>
-				{% endif %}
+				<span style="margin: 5px;" id ="curr_file"><-- Choose a file to start editing</span>
 				<textarea id="editor"># Welcome to Climb IDE. Choose a file to get started #</textarea>
 				<script>
 					var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
