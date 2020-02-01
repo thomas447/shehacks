@@ -1,5 +1,4 @@
 var currentFilePath = '';
-var everythingSaved = true;
 
 // Callbacks
 
@@ -31,10 +30,28 @@ function onRefresh() {
 	}
 }
 
+function onRun() {
+	if (currentFilePath != '') {
+		runFileAjax(currentFilePath);
+	}
+}
+
 // Ajax Calls
 
 function runFileAjax(filePath) {
+		
+	var data = {
+		path : filePath
+	}
 
+	$.ajax({
+		type: 'POST',
+		url: '/run',
+		data: data,
+		success: function(result) {
+			console.log(result);
+		}
+	}) 
 }
 
 function saveFileAjax(data) {
