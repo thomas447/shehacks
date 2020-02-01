@@ -108,7 +108,7 @@ def logout():
 	return redirect(url_for("login"));
 
 
-@app.route('/files')
+@app.route('/files', method=['POST'])
 def files():
 	d = get_files(session['working_name'], session['curr_project'])
 	return jsonify(d)
