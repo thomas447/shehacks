@@ -171,5 +171,6 @@ def update_file():
 def run():
 	if request.method == 'POST':
 		path = request.form['path']
+		print(path)
 		output = run_file(path)
 		return jsonify({"output": output})
