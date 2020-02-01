@@ -1,11 +1,11 @@
 from app import app
-
-#from flask import session
 from flask import Flask, session, redirect, url_for, request, render_template,  jsonify
-
-
 import os
 import subprocess
+
+
+online = dict()
+
 
 def dir_check(user, proj):
         if not os.path.isdir("data/{}/{}".format(user, proj)):
@@ -77,6 +77,7 @@ def rec_files(path, d, c):
 def index():
 	if not session.get('logged_in'):
 		return redirect(url_for('login'))
+	online[session["username"]] = session["curr_project"]
 	return render_template("index.html")
 
 
@@ -99,6 +100,8 @@ def login():
 
 @app.route('/logout')
 def logout():
+	if session['username'] in online:
+		del online[session['username']]
 	session['logged_in'] = False
 	session["username"] = ''
 	session["working_name"] = '';
@@ -111,3 +114,11 @@ def logout():
 def files():
 	d = get_files(session['working_name'])
 	return jsonify(d)
+
+@app.route('/collab', methods=['POST', 'GET'])
+def collab():
+	l = list()
+	for user in online.keys():
+		if online[user] == session["curr_project"]:
+			l.append(user)
+	return jsonify({"users": l})
