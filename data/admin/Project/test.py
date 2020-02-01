@@ -1,2 +1,3 @@
 print("hello world")
-asdasdasdasdasd
+autosave = 5;
+asdasdasdasdasd = 42069;
