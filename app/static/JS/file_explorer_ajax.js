@@ -97,7 +97,7 @@ function directoryHTML(dir, depth) {
 // File HTML computer
 function fileHTML(file_arr, depth) {
 
-	return '<div id="file" onclick="onClickFile(this)" file = "' + file_arr[0] + '" path = "'+ file_arr[1]+'" class="file gray text-dark" style = "margin-left: 20px" depth = "'+ depth +'"><span>'+ file_arr[0] +'</span></div>'
+	return '<div id="file" onclick="onClickFile(this)" file = "' + file_arr[0] + '" path = "'+ file_arr[1]+'" class="file gray" style = "margin-left: 20px" depth = "'+ depth +'"><span>'+ file_arr[0] +'</span></div>'
 
 }
 

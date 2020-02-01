@@ -1,4 +1,5 @@
 var currentFilePath = '';
+var currentFile = null;
 
 // Button Callbacks
 
@@ -6,6 +7,18 @@ function onClickFile(file) {
 
 	if(file.getAttribute('path') != currentFilePath) {
 		currentFilePath = file.getAttribute('path');
+		
+		if (currentFile != null) {
+			currentFile.classList.remove('bg-success');
+			currentFile.classList.remove('text-light');
+			currentFile.classList.add('gray');
+		} 
+
+		currentFile = file;
+		currentFile.classList.add('bg-success');
+		currentFile.classList.add('text-light');
+		currentFile.classList.remove('gray');
+
 		$("#curr_file").html("<-- Editing <b>" + file.getAttribute('file') + "</b>");
 		openFileAjax(currentFilePath);
 	}
