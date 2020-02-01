@@ -49,7 +49,7 @@ function runFileAjax(filePath) {
 		url: '/run',
 		data: data,
 		success: function(result) {
-			console.log(result);
+			$("#console").html(result.output);
 		}
 	}) 
 }

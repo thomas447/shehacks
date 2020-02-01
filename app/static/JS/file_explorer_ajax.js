@@ -6,6 +6,18 @@ $(document).ready(function () {
 
 // Mouse Callbacks
 
+function fileMouseEnter(file) {
+	file.classList.remove(gray);
+	file.classList.add('bg-dark');
+	file.classList.add('text-light');
+}
+
+function fileMouseLeave(file) {
+	file.classList.add(gray);
+	file.classList.remove('bg-dark');
+	file.classList.remove('text-light');
+}
+
 // Displays the File Explorer Content
 
 function getFileExplorerContent() {
@@ -53,6 +65,6 @@ function directoryHTML(dir, depth) {
 // File HTML computer
 function fileHTML(file_arr, depth) {
 
-	return '<div id="file" mouseenter="fileMouseEnter()" mouseleave="fileMouseLeave()" onclick="onClickFile(this)" file = "' + file_arr[0] + '" path = "'+ file_arr[1]+'" class="file gray text-dark" style = "margin-left: 20px" depth = "'+ depth +'"><span>'+ file_arr[0] +'</span></div>'
+	return '<div id="file" mouseenter="fileMouseEnter(this)" mouseleave="fileMouseLeave(this)" onclick="onClickFile(this)" file = "' + file_arr[0] + '" path = "'+ file_arr[1]+'" class="file gray text-dark" style = "margin-left: 20px" depth = "'+ depth +'"><span>'+ file_arr[0] +'</span></div>'
 
 }
