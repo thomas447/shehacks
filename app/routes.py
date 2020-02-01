@@ -22,8 +22,7 @@ def login():
 		session["logged_in"] = True
 		return "Hello, {}".format(session["username"])
 	else:
-		#session['logged_in'] = True
-		return render_template("login.html")
+		return redirect(url_for("index"))
 
 
 @app.route('/logout')
