@@ -20,9 +20,9 @@ def login():
 	if (request.method == 'POST'):
 		session["username"] = request.form["username"]
 		session["logged_in"] = True
-		return "Hello, {}".format(session["username"])
-	else:
 		return redirect(url_for("index"))
+
+	return render_template('login.html');
 
 
 @app.route('/logout')
